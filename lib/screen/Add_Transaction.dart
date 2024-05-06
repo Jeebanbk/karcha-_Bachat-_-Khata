@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:incomerecordapp/colors.dart';
 import 'package:incomerecordapp/controller/transaction_controller.dart';
 import 'package:incomerecordapp/model/transaction.dart';
 
@@ -20,6 +21,7 @@ class _AddTransactionState extends State<AddTransaction> {
   TextEditingController typecontroller = TextEditingController();
   final TransactionController transactionController =
       Get.find<TransactionController>();
+  final List<String> type = ["income", "expenses"];
   @override
   void initState() {
     super.initState();
@@ -30,7 +32,6 @@ class _AddTransactionState extends State<AddTransaction> {
   }
 
   void additem() {
-    print("i am here");
     if (_keyform.currentState!.validate()) {
       Transaction transaction = Transaction(
           title: titlecontroller.text,
@@ -151,6 +152,8 @@ class _AddTransactionState extends State<AddTransaction> {
                       TextButton(
                           onPressed: () {
                             additem();
+                            Get.snackbar("Your Transaction",
+                                "is Added Successfuly"); //backgroundColor: transaction.type=="income"?themeColors:Colors.redAccent);
                           },
                           child: const Text(
                             "Add transaction",

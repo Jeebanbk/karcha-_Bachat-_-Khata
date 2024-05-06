@@ -1,5 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:ffi';
 
+import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:get/get.dart';
 import 'package:incomerecordapp/colors.dart';
 import 'package:incomerecordapp/componet/amount.dart';
@@ -22,6 +25,21 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   TransactionController transactionController =
       Get.put(TransactionController());
+  List chartdata = [];
+  @override
+  void initState() {
+    //   List chartdata = [
+    //
+    //   [100, "expanses", Colors.redAccent]
+    // ];
+    chartdata.addAll([
+      [400, 'income', themeColors],
+      [200, 'expenses', Colors.redAccent]
+    ]);
+
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +59,33 @@ class _MyAppState extends State<MyApp> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              
               Container(
                 height: 150,
                 width: MediaQuery.of(context).size.width * 1,
-                decoration: BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.circular(6)),
+                // decoration: BoxDecoration(
+                //     color: Colors.amber,
+                //     borderRadius: BorderRadius.circular(6)),
+                child: SfCircularChart(
+                  series: [
+                    PieSeries(
+                      dataSource: chartdata,
+                      yValueMapper: (data, _) => data[0],
+                      xValueMapper: (data, _) => data[1],
+                      radius: '110%',
+                      explode: true,
+                      pointColorMapper: (data, _) => data[2],
+                      dataLabelMapper: (data, _) => data[0].toString(),
+                      dataLabelSettings: const DataLabelSettings(
+                        isVisible: true,
+                      ),
+                    ),
+                  ],
+                  legend: const Legend(
+                      isVisible: true,
+                      position: LegendPosition.bottom,
+                      textStyle: TextStyle(fontSize: 15)),
+                ),
               ),
               const SizedBox(
                 height: 15,

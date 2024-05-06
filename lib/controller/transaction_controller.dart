@@ -20,6 +20,23 @@ class TransactionController extends GetxController {
     update();
   }
 
-  void calculateTotalExpenes() {}
-  void calculateTotalIncome() {}
+  void calculateTotalExpenes() {
+    num count = 0;
+    for (var transaction in transactions) {
+      if (transaction.type == "expenses") {
+        count += transaction.amount;
+      }
+    }
+    TotalExpenses.value = count.toInt();
+  }
+
+  void calculateTotalIncome() {
+    num count = 0;
+    for (var transaction in transactions) {
+      if (transaction.type == "income") {
+        count += transaction.amount;
+      }
+    }
+    Totalincome.value = count.toInt();
+  }
 }

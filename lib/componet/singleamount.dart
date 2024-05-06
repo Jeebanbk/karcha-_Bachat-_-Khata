@@ -8,8 +8,6 @@ class Single extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(transaction.type);
-    print("yeha nira ko hooo .........");
     return Container(
       width: MediaQuery.of(context).size.width * 1,
       decoration: BoxDecoration(
