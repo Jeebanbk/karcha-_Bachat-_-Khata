@@ -33,8 +33,8 @@ class _MyAppState extends State<MyApp> {
     //   [100, "expanses", Colors.redAccent]
     // ];
     chartdata.addAll([
-      [400, 'income', themeColors],
-      [200, 'expenses', Colors.redAccent]
+      [transactionController.Totalincome.value, 'income', themeColors],
+      [transactionController.TotalExpenses.value, 'expenses', Colors.redAccent]
     ]);
 
     // TODO: implement initState
@@ -59,32 +59,33 @@ class _MyAppState extends State<MyApp> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              
               Container(
                 height: 150,
                 width: MediaQuery.of(context).size.width * 1,
                 // decoration: BoxDecoration(
                 //     color: Colors.amber,
                 //     borderRadius: BorderRadius.circular(6)),
-                child: SfCircularChart(
-                  series: [
-                    PieSeries(
-                      dataSource: chartdata,
-                      yValueMapper: (data, _) => data[0],
-                      xValueMapper: (data, _) => data[1],
-                      radius: '110%',
-                      explode: true,
-                      pointColorMapper: (data, _) => data[2],
-                      dataLabelMapper: (data, _) => data[0].toString(),
-                      dataLabelSettings: const DataLabelSettings(
-                        isVisible: true,
+                child: Obx(
+                  () => SfCircularChart(
+                    series: [
+                      PieSeries(
+                        dataSource: transactionController.getChartitem(),
+                        yValueMapper: (data, _) => data[0],
+                        xValueMapper: (data, _) => data[1],
+                        radius: '110%',
+                        explode: true,
+                        pointColorMapper: (data, _) => data[2],
+                        dataLabelMapper: (data, _) => data[0].toString(),
+                        dataLabelSettings: const DataLabelSettings(
+                          isVisible: true,
+                        ),
                       ),
-                    ),
-                  ],
-                  legend: const Legend(
-                      isVisible: true,
-                      position: LegendPosition.bottom,
-                      textStyle: TextStyle(fontSize: 15)),
+                    ],
+                    legend: const Legend(
+                        isVisible: true,
+                        position: LegendPosition.bottom,
+                        textStyle: TextStyle(fontSize: 15)),
+                  ),
                 ),
               ),
               const SizedBox(

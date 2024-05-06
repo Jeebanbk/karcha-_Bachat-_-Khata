@@ -1,12 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:incomerecordapp/colors.dart';
 import 'package:incomerecordapp/model/transaction.dart';
+
 
 class TransactionController extends GetxController {
   List transactions = <Transaction>[].obs;
-  RxInt Totalincome = 0.obs;
-  RxInt TotalExpenses = 0.obs;
+  RxInt Totalincome = 110.obs;
+  RxInt TotalExpenses = 220.obs;
   @override
-  void OnInit() {
+  void onInit() {
     calculateTotalExpenes();
     calculateTotalIncome();
     super.onInit();
@@ -38,5 +41,11 @@ class TransactionController extends GetxController {
       }
     }
     Totalincome.value = count.toInt();
+  }
+  getChartitem(){
+    return [
+      [Totalincome.value, 'income',themeColors],
+      [TotalExpenses.value, 'expenses', Colors.redAccent]
+    ];
   }
 }
