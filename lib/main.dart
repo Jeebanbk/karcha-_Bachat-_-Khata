@@ -48,11 +48,11 @@ class _MyAppState extends State<MyApp> {
       title: "Income/Expenses tracker",
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.cyanAccent,
+          backgroundColor: themeColors,
           title: const Text(
             "Income / Expenses Tracker",
             style: TextStyle(
-                fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
         body: Padding(
@@ -73,6 +73,7 @@ class _MyAppState extends State<MyApp> {
                         yValueMapper: (data, _) => data[0],
                         xValueMapper: (data, _) => data[1],
                         radius: '110%',
+                        //innerRadius: '30%',
                         explode: true,
                         pointColorMapper: (data, _) => data[2],
                         dataLabelMapper: (data, _) => data[0].toString(),

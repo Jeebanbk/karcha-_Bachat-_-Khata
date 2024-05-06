@@ -51,7 +51,7 @@ class _AddTransactionState extends State<AddTransaction> {
       title: "ADD Transaction",
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.cyanAccent,
+          backgroundColor: themeColors,
           leading: IconButton(
             onPressed: () {},
             icon: const Icon(Icons.arrow_back),
